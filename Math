@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四年級面積計算練習</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question p {
+            margin: 0 0 10px 0;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .reset-btn {
+            background-color: #dc3545;
+        }
+        .reset-btn:hover {
+            background-color: #c82333;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+        @media (max-width: 600px) {
+            input[type="number"] {
+                width: 60px;
+            }
+            button {
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>四年級面積計算練習</h1>
+    <div id="quiz">
+        <div class="question">
+            <p>1. 一個長方形的長是6厘米，寬是4厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q1" min="0"> <span id="result1" class="result"></span>
+        </div>
+        <div class="question">
+            <p>2. 一個長方形花園的長是10米，寬是3米。它的面積是多少？（單位：平方米）</p>
+            <input type="number" id="q2" min="0"> <span id="result2" class="result"></span>
+        </div>
+        <div class="question">
+            <p>3. 一個長方形課桌的長是8厘米，寬是5厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q3" min="0"> <span id="result3" class="result"></span>
+        </div>
+        <div class="question">
+            <p>4. 一個長方形地毯的長是7米，寬是2米。它的面積是多少？（單位：平方米）</p>
+            <input type="number" id="q4" min="0"> <span id="result4" class="result"></span>
+        </div>
+        <div class="question">
+            <p>5. 一個長方形黑板的長是9厘米，寬是6厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q5" min="0"> <span id="result5" class="result"></span>
+        </div>
+        <div class="question">
+            <p>6. 一個正方形的邊長是5厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q6" min="0"> <span id="result6" class="result"></span>
+        </div>
+        <div class="question">
+            <p>7. 一個正方形地磚的邊長是3米。它的面積是多少？（單位：平方米）</p>
+            <input type="number" id="q7" min="0"> <span id="result7" class="result"></span>
+        </div>
+        <div class="question">
+            <p>8. 一個正方形紙板的邊長是4厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q8" min="0"> <span id="result8" class="result"></span>
+        </div>
+        <div class="question">
+            <p>9. 一個正方形花壇的邊長是6米。它的面積是多少？（單位：平方米）</p>
+            <input type="number" id="q9" min="0"> <span id="result9" class="result"></span>
+        </div>
+        <div class="question">
+            <p>10. 一個正方形窗戶的邊長是7厘米。它的面積是多少？（單位：平方厘米）</p>
+            <input type="number" id="q10" min="0"> <span id="result10" class="result"></span>
+        </div>
+    </div>
+    <button onclick="checkAnswers()">提交答案</button>
+    <button class="reset-btn" onclick="resetQuiz()">重置</button>
+
+    <script>
+        const correctAnswers = {
+            q1: 24,
+            q2: 30,
+            q3: 40,
+            q4: 14,
+            q5: 54,
+            q6: 25,
+            q7: 9,
+            q8: 16,
+            q9: 36,
+            q10: 49
+        };
+
+        function checkAnswers() {
+            for (let i = 1; i <= 10; i++) {
+                const input = document.getElementById(`q${i}`).value;
+                const resultSpan = document.getElementById(`result${i}`);
+                if (input === "") {
+                    resultSpan.textContent = "請輸入答案！";
+                    resultSpan.className = "result incorrect";
+                } else if (parseInt(input) === correctAnswers[`q${i}`]) {
+                    resultSpan.textContent = "正確！";
+                    resultSpan.className = "result correct";
+                } else {
+                    resultSpan.textContent = `錯誤！正確答案是 ${correctAnswers[`q${i}`]}`;
+                    resultSpan.className = "result incorrect";
+                }
+            }
+        }
+
+        function resetQuiz() {
+            for (let i = 1; i <= 10; i++) {
+                document.getElementById(`q${i}`).value = "";
+                document.getElementById(`result${i}`).textContent = "";
+                document.getElementById(`result${i}`).className = "result";
+            }
+        }
+    </script>
+</body>
+</html>
